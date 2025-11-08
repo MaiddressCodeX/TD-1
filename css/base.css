@@ -1,0 +1,57 @@
+/* Reset แบบนุ่ม ๆ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+button {
+  font: inherit;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-border);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+}
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0px) scale(.98); }
+a { color: var(--accent); text-decoration: none; }
+.app {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 24px;
+}
+.center { display: grid; place-items: center; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1);
+  padding: 20px;
+}
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+
+.h1 { font-size: clamp(28px, 3.2vw, 40px); font-weight: 800; letter-spacing: .3px; }
+.h2 { font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+.muted { color: var(--muted); }
+
+.hr { height: 1px; background: var(--surface-border); margin: 10px 0; border-radius: 999px; }
+
+footer {
+  padding: 16px 0 36px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}

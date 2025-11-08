@@ -1,0 +1,63 @@
+:root {
+  --bg: #0b0d12;
+  --fg: #e7ecf3;
+  --surface: #12151c;
+  --surface-border: #232836;
+  --muted: #9aa4b2;
+  --accent: #ff8a00;
+
+  --btn-bg: #181c25;
+  --btn-fg: #e7ecf3;
+  --btn-border: #2b3345;
+
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+  --shadow-2: 0 30px 80px rgba(0,0,0,.45);
+
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+html[data-theme="light"] {
+  --bg: #f6f7fb;
+  --fg: #0f172a;
+  --surface: #ffffff;
+  --surface-border: #e5e7eb;
+  --muted: #64748b;
+
+  --btn-bg: #ffffff;
+  --btn-fg: #0f172a;
+  --btn-border: #e5e7eb;
+
+  --shadow-1: 0 12px 30px rgba(2, 6, 23, .08);
+  --shadow-2: 0 40px 90px rgba(2, 6, 23, .12);
+}
+
+/* ปุ่มสีเน้น */
+.btn-accent {
+  background: var(--accent);
+  border-color: color-mix(in oklab, var(--accent), #000 20%);
+  color: #101114;
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--surface-border);
+}
+
+/* สีเน้นปรับได้จาก Settings */
+:root { --accent: var(--accent); }
+
+:root {
+  --accent: #5b9cff;
+  --surface: #ffffff;
+  --text: #111;
+  --surface-border: rgba(0,0,0,.12);
+  --btn-bg: #f3f5f8;
+}
+:root[data-theme="dark"]{
+  --surface: #13151a;
+  --text: #e9edf3;
+  --surface-border: rgba(255,255,255,.12);
+  --btn-bg: #1b1f27;
+}
+a, .btn-accent { background: var(--accent); border-color: var(--accent); color: #fff; }
