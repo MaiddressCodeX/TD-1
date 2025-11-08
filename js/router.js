@@ -1,20 +1,25 @@
-// Router แบบซีนเดียว (SPA)
-const SCENES = new Map();
-let current = null;
-let node = null;
+const routes = {};
+let latestState = {};
+
+async function render() {
+  const root = document.getElementById("app");
+  if (!root) return console.error("#app not found");
+  const hash = location.hash.slice(1) || "/";
+  const [path, qs] = hash.split("?");
+  const state = qs ? JSON.parse(decodeURIComponent(qs)) : {};
+  latestState = state;
+  const scene = routes[path] || routes["/"];
+  const el = await scene.render?.(state);
+  root.innerHTML = "";
+  root.appendChild(el || document.createTextNode("No scene"));
+}
 
 export const Router = {
-  mount(el) { node = el; },
-  register(name, mod) { SCENES.set(name, mod); },
-  async go(name, payload) {
-    const mod = SCENES.get(name);
-    if (!mod) throw new Error(`Scene "${name}" not found`);
-    node.innerHTML = "";
-    const el = await mod.render(payload);
-    el.classList.add("page-enter");
-    node.appendChild(el);
-    current = { name, mod, el };
-    if (mod.onMount) mod.onMount(payload);
+  add(path, scene){ routes[path] = scene; },
+  go(path, state={}){
+    const q = Object.keys(state).length ? "?" + encodeURIComponent(JSON.stringify(state)) : "";
+    location.hash = path + q;
   },
-  get current() { return current?.name ?? null; }
+  start(){ window.addEventListener("hashchange", render); render(); },
+  get state(){ return latestState; }
 };
